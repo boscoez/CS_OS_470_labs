@@ -8,3 +8,5 @@ https://github.com/boscoez/CS_OS_470_labs/blob/5d4a6c9cbe0d2f8ddf54005f2151032e5
 
 
 https://github.com/boscoez/CS_OS_470_labs/blob/9b734daa76bb002265041ac76b774c7dfec542c2/Lab3heir.c.png
+
+https://github.com/boscoez/CS_OS_470_labs/blob/mainOne/Lab4/Lab4os470.pdf 
