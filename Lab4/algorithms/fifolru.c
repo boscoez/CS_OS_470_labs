@@ -1,8 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 // FIFO Page Replacement Algorithm
-int fifo(int pageFrames, int referenceString[], int n) {
+int fifo(int pageFrames, int referenceString[], int referenceLength) {
     int pageFaults = 0;
     int pageTable[pageFrames];
     for (int i = 0; i < pageFrames; i++) {
@@ -10,7 +9,7 @@ int fifo(int pageFrames, int referenceString[], int n) {
     }
     int pageTableIndex = 0;
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < referenceLength; i++) {
         int page = referenceString[i];
         int pageFound = 0;
         for (int j = 0; j < pageFrames; j++) {
@@ -30,7 +29,7 @@ int fifo(int pageFrames, int referenceString[], int n) {
 }
 
 // LRU Page Replacement Algorithm
-int lru(int pageFrames, int referenceString[], int n) {
+int lru(int pageFrames, int referenceString[], int referenceLength) {
     int pageFaults = 0;
     int pageTable[pageFrames];
     for (int i = 0; i < pageFrames; i++) {
@@ -41,7 +40,7 @@ int lru(int pageFrames, int referenceString[], int n) {
         lruTable[i] = 0;
     }
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < referenceLength; i++) {
         int page = referenceString[i];
         int pageFound = 0;
         for (int j = 0; j < pageFrames; j++) {
@@ -52,7 +51,7 @@ int lru(int pageFrames, int referenceString[], int n) {
             }
         }
         if (!pageFound) {
-            int minLru = 1000000;
+            int minLru = 2147483647;
             int pageTableIndex = 0;
             for (int j = 0; j < pageFrames; j++) {
                 if (lruTable[j] < minLru) {
@@ -71,11 +70,11 @@ int lru(int pageFrames, int referenceString[], int n) {
 
 int main() {
     int referenceString[] = {0, 1, 7, 2, 3, 2, 7, 1, 0, 3};
-    int n = sizeof(referenceString) / sizeof(referenceString[0]);
+    int referenceLength = sizeof(referenceString) / sizeof(referenceString[0]);
     int pageFrames = 4;
 
-    printf("FIFO Page Replacement: %d\n", fifo(pageFrames, referenceString, n));
-    printf("LRU Page Replacement: %d\n", lru(pageFrames, referenceString, n));
+    printf("FIFO Page Replacement: %d\n", fifo(pageFrames, referenceString, referenceLength));
+    printf("LRU Page Replacement: %d\n", lru(pageFrames, referenceString, referenceLength));
 
     return 0;
 }
